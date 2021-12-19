@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400&display=swap" rel="stylesheet">
+</head>
+
+<body>
+  <style>
+    /* Reset */
+    html {
+      font-size: 16px;
+    }
+
+    html,
+    body {
+      font-family: 'Noto Sans JP', sans-serif;
+      font-feature-settings: "palt";
+      margin: 0;
+      padding: 0;
+      border: 0;
+    }
+
+    html,
+    body,
+    h1,
+    h2,
+    h3,
+    h4,
+    ul,
+    ol,
+    dl,
+    li,
+    dt,
+    dd,
+    p,
+    div,
+    span,
+    img,
+    a,
+    table,
+    tr,
+    th,
+    td {
+      margin: 0;
+      padding: 0;
+      border: 0;
+      font-weight: normal;
+      font-size: 100%;
+      vertical-align: baseline;
+    }
+
+    article,
+    header,
+    footer,
+    main,
+    aside,
+    figure,
+    figcaption,
+    nav,
+    section {
+      display: block;
+    }
+
+    body {
+      line-height: 1;
+      -ms-text-size-adjust: 100%;
+      -webkit-text-size-adjust: 100%;
+    }
+
+    ol,
+    ul {
+      list-style: none;
+      list-style-type: none;
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+
+    a,
+    area,
+    button,
+    [role="button"],
+    input:not([type=range]),
+    label,
+    select,
+    summary,
+    textarea {
+      -ms-touch-action: manipulation;
+      touch-action: manipulation;
+    }
+
+    table {
+      border-collapse: collapse;
+    }
+
+    a {
+      text-decoration: none;
+    }
+
+    a:link {
+      text-decoration: none;
+    }
+
+    figure {
+      margin: 0;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      vertical-align: bottom;
+    }
+
+    video {
+      vertical-align: bottom;
+    }
+
+    a {
+      color: inherit;
+    }
+
+    /* Reset */
+
+    .slider-x {
+      display: flex;
+      height: 100vh;
+      -webkit-overflow-scrolling: touch;
+      overflow-scrolling: touch;
+      overflow-x: scroll;
+      scroll-snap-type: x mandatory;
+      width: 100vw;
+    }
+
+    .slider-x>div {
+      /* 以下の設定は必須 */
+      scroll-snap-align: center;
+      height: 100%;
+      width: 100%;
+      flex: none;
+
+      /* 以下デモ用のデザイン */
+      color: #FFF;
+      font-size: 150%;
+      font-weight: bold;
+      /* 文字の上下左右中央寄せのための記述 */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+
+    /* デモ用のデザイン */
+    .slider-x>div:nth-child(1) {
+      background-color: #C7000B
+    }
+
+    .slider-x>div:nth-child(2) {
+      background-color: #D28300
+    }
+
+    .slider-x>div:nth-child(3) {
+      background-color: #DFD000
+    }
+
+    .slider-x>div:nth-child(4) {
+      background-color: #00873C
+    }
+
+    .slider-x>div:nth-child(5) {
+      background-color: #005AA0
+    }
+
+    .inview {
+      width: 100px;
+      height: 100px;
+      top: 0;
+      right: 0;
+      z-index: 1;
+      position: absolute;
+    }
+
+    .cutin {
+      background: #005AA0 url('./images/pict_calling.jpg') no-repeat border-box left top/cover fixed content-box;
+      width: 100vw;
+      height: 100vh;
+      position: absolute;
+      left: 0;
+      top: 0;
+      z-index: 1;
+    }
+
+    .calling {
+      position: absolute;
+      bottom: 7.5%;
+      height: 9vh;
+      margin: auto;
+      right: 38%;
+      width: 9vh;
+    }
+
+    .tel {
+      background: transparent url('./images/pict_2.jpg') no-repeat border-box left top/cover fixed content-box;
+      height: 100vh;
+      left: 0;
+      position: absolute;
+      top: 0;
+      width: 100vw;
+      z-index: 1;
+    }
+
+    .hang-up {
+      position: absolute;
+      bottom: 7.5%;
+      height: 9vh;
+      left: 0;
+      margin: auto;
+      right: 0;
+      width: 9vh;
+    }
+
+    .result {
+      font-size: 1.2em;
+      font-weight: bold;
+      left: 40vw;
+      position: absolute;
+      top: 14.0725vh;
+      color: rgba(255, 255, 255, .5);
+    }
+
+    .slide-image{
+      height: auto;
+      object-fit: cover;
+      width: 100%;
+    }
+
+  </style>
+  <main>
+    <div class="slider-x">
+      <div>
+        <img class="slide-image" src="./images/slides/01.jpg" alt="">
+      </div>
+      <div>
+        <img class="slide-image" src="./images/slides/02.jpg" alt="">
+      </div>
+      <div>
+        <img class="slide-image" src="./images/slides/03.jpg" alt="">
+      </div>
+      <div>
+        <img class="slide-image" src="./images/slides/04.jpg" alt="">
+        <span class="inview"></span>
+      </div>
+      <div>
+        <img class="slide-image" src="./images/slides/05.jpg" alt="">
+        <span class="inview"></span>
+      </div>
+      <div>
+        <img class="slide-image" src="./images/slides/06.jpg" alt="">
+        <span class="inview"></span>
+      </div>
+    </div>
+    <div id="temporaryBox1" class="cutin" style="display: none;">
+      <span id="btnKeepBox" class="calling"></span>
+    </div>
+    <div id="temporaryBox" class="tel" style="display: none;">
+      <div id="result" class="result" style="">00:00</div>
+      <span id="btnDeleteBox" class="hang-up"></span>
+    </div>
+
+  </main>
+
+  <script>
+    let timer1;
+    let startTime, nowTime;
+    const btnStart = document.getElementById('btnKeepBox');
+    const btnStop = document.getElementById('btnDeleteBox');
+    const playAudio = document.getElementsByClassName('inview');
+    const setAudio = new Audio("test1.mp3");
+
+    // 取得したすべての.inview要素に対してクリックイベントを適用
+    for (let i = 0; i < playAudio.length; i++) {
+      playAudio[i].addEventListener('click', function () {
+        document.getElementById("temporaryBox1").style.display = "block"; // ボックスを表示
+        setAudio.play();  //サウンドを再生
+      }, false);
+    }
+
+    // start
+    btnStart.addEventListener('click', function () {
+      document.getElementById("temporaryBox").style.display = "block"; // ボックスを表示
+      let re = document.getElementById('result');
+      re.innerHTML = '00:00';
+      setAudio.pause();
+      setAudio.currentTime = 0;
+      // スタート時刻
+      startTime = new Date();
+      // タイマー開始
+      startTimer();
+      btnStart.disabled = true;
+    });
+
+    // stop
+    btnStop.addEventListener('click', function () {
+      document.getElementById("temporaryBox1").style.display = "none"; // ボックスを削除
+      document.getElementById("temporaryBox").style.display = "none"; // ボックスを削除
+      stopTimer();
+      btnStart.disabled = false;
+    });
+
+    // タイマー開始
+    function startTimer() {
+      timer1 = setInterval(showSecond, 1000);
+    }
+
+    // タイマー終了
+    function stopTimer() {
+      clearInterval(timer1);
+    }
+
+    // 秒数表示(不完全)
+    function showSecond() {
+      nowTime = new Date();
+      let elapsedTime = Math.floor((nowTime - startTime) / 1000);
+      elapsedTime = elapsedTime < 10 ? "0" + elapsedTime : elapsedTime; //ゼロ埋め
+      let str = "00:" + elapsedTime;
+      let re = document.getElementById('result');
+      re.innerHTML = str;
+    }
+  </script>
+</body>
+
+</html>
